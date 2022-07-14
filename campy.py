@@ -23,11 +23,12 @@ from campy import writer, display, configurator
 from campy.trigger import trigger
 from campy.cameras import unicam
 from campy.utils.utils import HandleKeyboardInterrupt
+from datetime import datetime
 
 def OpenSystems():
 	# Configure parameters
 	params = configurator.ConfigureParams()
-
+	params["videoFolder"] = params["videoFolder"] + '_' + datetime.now().strftime("%Y-%m-%d-%I%M%S")
 	# Load Camera Systems and Devices
 	systems = unicam.LoadSystems(params)
 	systems = unicam.GetDeviceList(systems, params)

@@ -3,16 +3,14 @@
 from imageio_ffmpeg import write_frames
 import os, sys, time, logging
 from campy.utils.utils import QueueKeyboardInterrupt
-from datetime import datetime
 
 def OpenWriter(cam_params, queue):
 	try:
 		writing = False
 		folder_name = os.path.join(cam_params["videoFolder"], cam_params["cameraName"])
-		#file_name = cam_params["videoFilename"]
+		file_name = cam_params["videoFilename"]
 		
-		date = datetime.now().strftime("%Y-%m-%d-%I%M%S")
-		file_name = '0-' + date + '.mp4'
+
 		full_file_name = os.path.join(folder_name, file_name)
 
 		if not os.path.isdir(folder_name):

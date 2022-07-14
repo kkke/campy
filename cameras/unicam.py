@@ -7,7 +7,6 @@ import os, sys, time, csv, logging
 import numpy as np
 from collections import deque
 from scipy import io as sio
-from datetime import datetime
 
 def ImportCam(make):
 	if make == "basler":
@@ -193,14 +192,12 @@ def SaveMetadata(cam_params, grabdata):
 		meta = cam_params
 
 		# Save frame data to numpy file
-		metadataFile_npy = 'frametimes_' + datetime.now().strftime("%Y-%m-%d-%I%M%S") + '.npy'
-		npy_filename = os.path.join(full_folder_name, metadataFile_npy)
+		npy_filename = os.path.join(full_folder_name, 'frametimes.npy')
 		x = np.array([grabdata['frameNumber'], grabdata['timeStamp']])
 		np.save(npy_filename,x)
 
 		# Also save frame data to MATLAB file
-		metadataFile_mat = 'frametimes_' + datetime.now().strftime("%Y-%m-%d-%I%M%S") + '.mat'
-		mat_filename = os.path.join(full_folder_name, metadataFile_mat)
+		mat_filename = os.path.join(full_folder_name,'frametimes.mat')
 		matdata = {};
 		matdata['frameNumber'] = grabdata['frameNumber']
 		matdata['timeStamp'] = grabdata['timeStamp']
